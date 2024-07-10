@@ -29,10 +29,10 @@ Where
 - y is `target`
 - $x^{(i)}, \space y^{(i)}$ is $i_{th}$ Training example
 - m is Number of training examples
-- ${\^y}^{(i)}$ is estimated output for a given model
+- $\hat{y}^{(i)}$ is estimated output for a given model
 
 The estimated/predicted output function can be defined as below:
-$${\^y}^{(i)} = f_{w,b}(x^{(i)})$$
+$$\hat{y}^{(i)} = f_{w,b}(x^{(i)})$$
 $$f_{w,b}(x^{(i)}) = wx^{(i)} + b$$
 
 ### Cost function
@@ -40,8 +40,8 @@ $$f_{w,b}(x^{(i)}) = wx^{(i)} + b$$
 This functions determines the value of deviation from the expected output. The function definition is as below:
 $$J\left(w, \space b\right) = \frac{1}{2m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)}) - y^{(i)})^2$$
 $$or$$
-$$J\left(w, \space b\right) = \frac{1}{2m}\sum_{i=0}^{m-1}({\^y}^{(i)} - y^{(i)})^2$$
-$$Where \space {\^y}^{(i)} - y^{(i)} \space is \space error$$
+$$J\left(w, \space b\right) = \frac{1}{2m}\sum_{i=0}^{m-1}(\hat{y}^{(i)} - y^{(i)})^2$$
+$$Where \space \hat{y}^{(i)} - y^{(i)} \space is \space error$$
 
 So, when the evaluated value of $J \space (Cost \space Function)$ is near to $0$, then the model for that training data suits best.
 
