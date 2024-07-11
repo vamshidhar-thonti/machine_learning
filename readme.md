@@ -74,5 +74,75 @@ $$
 b = b - \alpha \frac{1}{m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)}) - y^{(i)})
 $$
 
- - For each update step (iteration), the descent path/length becomes smaller and smaller, even with a fixed learning rate ($\alpha$)
- - If the slope (derviate part) is -ve, then the gradient descent diverges and may not reach the minumum at all.
+- For each update step (iteration), the descent path/length becomes smaller and smaller, even with a fixed learning rate ($\alpha$)
+- If the slope (derviate part) is -ve, then the gradient descent diverges and may not reach the minumum at all.
+
+---
+
+Most of the advanced models will have more than one `feature`, thus will have more than one parameter. Below is a simple example on how a model with multiple features look like
+
+$$
+f(x) = w_1x_1 + w_2x_2 + w_3x_3 + w_4x_4 + b
+$$
+
+$$or$$
+
+$$
+f_{\vec{w},b}(\vec{x}) = \vec{w}\cdot\vec{x} + b
+$$
+
+```python
+# Python's implementation of vectorization of the above formula
+# This numpy way of implementation is faster than the for loop implmentation
+f = np.dot(w, x) + b
+```
+
+## Feature Scaling
+
+When the feature values very large or very small, the prediction may show incorrect data, so, it is recommended to scale the value accordingly.
+It is suggested to have the values in the following ranges
+`-1 to 1`
+`-3 to 3`
+`-0.3 to 0.3`
+If the feature values goes beyond the above ranges, data has to be rescaled.
+
+It can be done in 3 ways:
+
+1.  **Dividing all the features values with the greatest of all**, this leads to the feature rescaling to fall between 0 and 1
+2.  **Mean Normalization**, mean of the data is used to rescale
+3.  **Z-score Normalization**, standard deviation is used to rescale the data.
+
+## Checking gradient descent for Convergence
+`Convergence` happens when the gradient descent is at the minumum value, in another way it can be said that the parameters are close to the global minimum.
+\
+To make sure if gradient descent is converging, it is best to plot a graph between the iterations and the cost, after the first iteration if the graph is decreasing, we can be sure that the gradient descent is converging, else the graph is said to be diverging (where the gradient descent never reach the minimum) which means `the chosen learning rate is too large` or `there may be a bug in the code`.
+\
+\
+**But how to decide if the gradient descent has reached global minumum (where the parameters are optimal for the training set)?**
+\
+As the number of iterations to reach the convergence varies for each model, its hard to depend on number of iterations.
+\
+There are 2 ways to determine it though:
+
+1. Simply looking at the graph and see if the cost remains constant.
+2. `Automatic Convergence Test`, when the cost decreases by  $\leq\epsilon$ $(10^{-3})$ (epsilon) in one iteration, then declare convergence.
+
+## Choosing the learning rate
+As seen before, $\alpha$ varies between 0 and 1. So, choosing a correcting learning rate plays vital role in convergence.
+\
+It's best to start $\alpha$ with 0.001 and going 3X from there. Plotting the graph with those ranges the learning rate $(\alpha)$ can be determined.
+
+Just remember that choosing a very small $(\alpha)$ may decreases the cost very slow and choosing a very large $(\alpha)$ may lead to divergence.
+
+## Feature Engineering
+
+It's an idea to either transform a feature or combine more than feature to create a brand feature which leads to better prediction from the model.
+\
+For example, with a model that can predict house prices with length and width as features, we can further engineer the existing features to create a brand new feature called area that helps in predicting the price of a house even better.
+\
+The more reasonable features in a model, the better prediction can be.
+
+## Polynomial Regression
+
+Often times the training data can be plotted as a curve and the linear regression with straight line will not fit the data. So solve this we can modify the model to have quadratic equations with features being raised to a certain power (say power of 2, power of 3 so on)
+> _Its recommended not to end the model's equation with power of 2 because the curve of the model may go down after a certain number of iterations. So, have the quadratic equation for a given feature end with atleast power of 3._
