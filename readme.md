@@ -153,7 +153,119 @@ Often times the training data can be plotted as a curve and the linear regressio
 > _Its recommended not to end the model's equation with power of 2 because the curve of the model may go down after a certain number of iterations. So, have the quadratic equation for a given feature end with atleast power of 3._
 
 ## Classification with linear regression model
+
 Linear Regression models best suits to predict over a range of numbers but in classification, the numbers to be predicted will be handful. Even though this model works better to classify with minimal data points by assigning a threshold (descision boundary), it starts to wrongly classify the data when the model is trained with data points that are spread across a wide range.
+
 > **Linear Regression model is NOT ideal for classification**
 
 Thus, a need of new model arises to solve classfication related problems.
+
+## Logistic Regression
+
+As the motto of this algorithm is to classify the values with either $0$ or $1$. The `sigmoid function` can be better leveraged. Using this function, any output can be mapped to be a value between $0$ and $1$, and by adding a `descision boundary`, the prediction can be classified better.
+
+The formula of `sigmoid function` is as below:
+
+$$
+g(z) = \frac{1}{1+e^{-z}}
+$$
+
+Where $z$ is the resultant of a linear regression model
+
+$$
+z=\vec w \cdot \vec x + b
+$$
+
+$$
+f_{\vec w,b}(\vec x)=g(\vec w \cdot \vec x + b)
+$$
+
+Hence,
+
+$$
+g(z) = \frac{1}{1+e^{-(\vec w \cdot \vec x + b)}}
+$$
+
+which results the output between the range of 0 and 1.
+
+## Cost function for Logistic Regression
+
+The mean squared error cost function that has been used for linear regression causes a wavy convex function many possible local minimas which is not ideal to find cost for Logistic regression. So, a new formula should be used to calculate cost of the latter model.
+In detail,
+
+- when the model predicts ~1 and target is also 1 the loss is said to be minimum.
+- when the model predicts ~0 and target is 1 the loss is said to be maximum, which then means the parameters has to be modified.
+
+Similar scenario applies when the target is 0.
+
+The cost function can be calculated as below:
+
+$$
+J(w, b) = \frac{1}{m} \sum_{i=0}^{m-1}[loss(f_{w,b}(x^{(i)}), y^{(i)})]
+$$
+
+Further the loss function can be simplified as,
+
+$$
+loss(f_{w,b}(x^{(i)}), y^{(i)}) = -y^{(i)}log(f_{w,b}(x^{(i)})) - (1 - y^{(i)})log(1 - f_{w,b}(x^{(i)}))
+$$
+
+When
+
+- $y = 0$
+  $$
+  loss(f_{w,b}(x^{(i)}), y^{(i)}) = -log(1 - f_{w,b}(x^{(i)}))
+  $$
+- $y = 1$
+  $$
+  loss(f_{w,b}(x^{(i)}), y^{(i)}) = -log(f_{w,b}(x^{(i)}))
+  $$
+
+> _**Reminder:** The lower the cost value, the better the model can predict._
+
+Therefore, the cost function can be written as
+
+$$
+J(w, b) = \frac{1}{m} \sum_{i=0}^{m-1}[-y^{(i)}log(f_{w,b}(x^{(i)})) - (1 - y^{(i)})log(1 - f_{w,b}(x^{(i)}))]
+$$
+
+$$
+or
+$$
+
+$$
+J(w, b) = -\frac{1}{m} \sum_{i=0}^{m-1}[y^{(i)}log(f_{w,b}(x^{(i)})) + (1 - y^{(i)})log(1 - f_{w,b}(x^{(i)}))]
+$$
+
+## Gradient Descent for Logistic regression
+
+This is similar to the one that we have for Linear regression
+
+$$
+w_j = w_j-\alpha \frac{\partial}{\partial{w_j}}J(w_j,b)
+$$
+
+$$
+b = b-\alpha \frac{\partial}{\partial{b}}J(w_j,b)
+$$
+
+Where
+$$\frac{\partial}{\partial{w_j}}J(w_j,b) = \frac{1}{m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)})-y^{(i)})x_j^{(i)}$$
+$$\frac{\partial}{\partial{b}}J(w_j,b) = \frac{1}{m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)})-y^{(i)})$$
+
+Therefore,
+
+$$
+w_j = w_j-\alpha \left[\frac{1}{m}\sum_{i=0}^{m-1}(f_{\vec w,b}(\vec x^{(i)})-y^{(i)})x_j^{(i)}\right]
+$$
+
+$$
+b = b-\alpha \left[\frac{1}{m}\sum_{i=0}^{m-1}(f_{\vec w,b}(\vec x^{(i)})-y^{(i)})\right]
+$$
+
+Where
+
+$$
+f_{\vec w,b}(\vec x)=\frac{1}{1+e^{-(\vec w \cdot \vec x + b)}}
+$$
+---
