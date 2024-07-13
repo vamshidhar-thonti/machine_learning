@@ -23,7 +23,9 @@
 ## Linear Regression
 
 The linear regression model's function is basically defined with the below function:
+
 $$f_w,_b\left(x^{(i)}\right)=wx^{(i)}+b$$
+
 Where
 
 - w, b are called `parameters`, `coefficients`, `weights`
@@ -34,14 +36,19 @@ Where
 - $\hat{y}^{(i)}$ is estimated output for a given model
 
 The estimated/predicted output function can be defined as below:
+
 $$\hat{y}^{(i)} = f_{w,b}(x^{(i)})$$
+
 $$f_{w,b}(x^{(i)}) = wx^{(i)} + b$$
 
 ### Cost function
 
 This functions determines the value of deviation from the expected output. The function definition is as below:
+
 $$J\left(w, \space b\right) = \frac{1}{2m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)}) - y^{(i)})^2$$
+
 $$or$$
+
 $$J\left(w, \space b\right) = \frac{1}{2m}\sum_{i=0}^{m-1}(\hat{y}^{(i)} - y^{(i)})^2$$
 $$Where \space \hat{y}^{(i)} - y^{(i)} \space is \space error$$
 
@@ -62,9 +69,10 @@ $$
 b = b - \alpha \frac{\partial}{\partial b}J(w,b)
 $$
 
-$$Where$$
-$$\space \space \alpha \space is \space Learning \space rate \space (Positive \space Number \space between \space 0 \space and \space 1)$$
-$$\frac{\partial}{\partial b}J(w,b) \space gives \space the \space slope$$
+Where
+
+- $\alpha$ is Learning rate (Positive Number between 0 and 1)
+- $\frac{\partial}{\partial b}J(w,b) \space gives \space the \space slope$
 
 By substituting all the values into the gradient descent formula and further evaluating the expression we end up having the gradient descent formula for linear regression as below:
 
@@ -213,13 +221,16 @@ $$
 When
 
 - $y = 0$
-  $$
-  loss(f_{w,b}(x^{(i)}), y^{(i)}) = -log(1 - f_{w,b}(x^{(i)}))
-  $$
+
+$$
+loss(f_{w,b}(x^{(i)}), y^{(i)}) = -log(1 - f_{w,b}(x^{(i)}))
+$$
+
 - $y = 1$
-  $$
-  loss(f_{w,b}(x^{(i)}), y^{(i)}) = -log(f_{w,b}(x^{(i)}))
-  $$
+
+$$
+loss(f_{w,b}(x^{(i)}), y^{(i)}) = -log(f_{w,b}(x^{(i)}))
+$$
 
 > _**Reminder:** The lower the cost value, the better the model can predict._
 
@@ -250,8 +261,14 @@ b = b-\alpha \frac{\partial}{\partial{b}}J(w_j,b)
 $$
 
 Where
-$$\frac{\partial}{\partial{w_j}}J(w_j,b) = \frac{1}{m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)})-y^{(i)})x_j^{(i)}$$
-$$\frac{\partial}{\partial{b}}J(w_j,b) = \frac{1}{m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)})-y^{(i)})$$
+
+$$
+\frac{\partial}{\partial{w_j}}J(w_j,b) = \frac{1}{m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)})-y^{(i)})x_j^{(i)}
+$$
+
+$$
+\frac{\partial}{\partial{b}}J(w_j,b) = \frac{1}{m}\sum_{i=0}^{m-1}(f_{w,b}(x^{(i)})-y^{(i)})
+$$
 
 Therefore,
 
@@ -268,4 +285,3 @@ Where
 $$
 f_{\vec w,b}(\vec x)=\frac{1}{1+e^{-(\vec w \cdot \vec x + b)}}
 $$
----
