@@ -18,7 +18,9 @@
 
 > **Clustering** is when the input data is grouped together to give sufficient information. For example, grouping of news or providing suggestions based on the viewed videos in youtube etc.
 
-## Terminology
+---
+
+## Linear Regression
 
 The linear regression model's function is basically defined with the below function:
 $$f_w,_b\left(x^{(i)}\right)=wx^{(i)}+b$$
@@ -113,6 +115,7 @@ It can be done in 3 ways:
 3.  **Z-score Normalization**, standard deviation is used to rescale the data.
 
 ## Checking gradient descent for Convergence
+
 `Convergence` happens when the gradient descent is at the minumum value, in another way it can be said that the parameters are close to the global minimum.
 \
 To make sure if gradient descent is converging, it is best to plot a graph between the iterations and the cost, after the first iteration if the graph is decreasing, we can be sure that the gradient descent is converging, else the graph is said to be diverging (where the gradient descent never reach the minimum) which means `the chosen learning rate is too large` or `there may be a bug in the code`.
@@ -125,9 +128,10 @@ As the number of iterations to reach the convergence varies for each model, its 
 There are 2 ways to determine it though:
 
 1. Simply looking at the graph and see if the cost remains constant.
-2. `Automatic Convergence Test`, when the cost decreases by  $\leq\epsilon$ $(10^{-3})$ (epsilon) in one iteration, then declare convergence.
+2. `Automatic Convergence Test`, when the cost decreases by $\leq\epsilon$ $(10^{-3})$ (epsilon) in one iteration, then declare convergence.
 
 ## Choosing the learning rate
+
 As seen before, $\alpha$ varies between 0 and 1. So, choosing a correcting learning rate plays vital role in convergence.
 \
 It's best to start $\alpha$ with 0.001 and going 3X from there. Plotting the graph with those ranges the learning rate $(\alpha)$ can be determined.
@@ -145,4 +149,11 @@ The more reasonable features in a model, the better prediction can be.
 ## Polynomial Regression
 
 Often times the training data can be plotted as a curve and the linear regression with straight line will not fit the data. So solve this we can modify the model to have quadratic equations with features being raised to a certain power (say power of 2, power of 3 so on)
+
 > _Its recommended not to end the model's equation with power of 2 because the curve of the model may go down after a certain number of iterations. So, have the quadratic equation for a given feature end with atleast power of 3._
+
+## Classification with linear regression model
+Linear Regression models best suits to predict over a range of numbers but in classification, the numbers to be predicted will be handful. Even though this model works better to classify with minimal data points by assigning a threshold (descision boundary), it starts to wrongly classify the data when the model is trained with data points that are spread across a wide range.
+> **Linear Regression model is NOT ideal for classification**
+
+Thus, a need of new model arises to solve classfication related problems.
