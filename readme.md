@@ -285,3 +285,76 @@ Where
 $$
 f_{\vec w,b}(\vec x)=\frac{1}{1+e^{-(\vec w \cdot \vec x + b)}}
 $$
+
+---
+
+As seen till now, we create a model that suits the training data well but when the features are less in number then the model will not be trained well enough which causes underfit, and when the features are many in number, the model may seem to perfectly fit the training data but the model cannot be generalized as the descision boundary is very complex. The parameters have to be chosen just right so that the decision boundary can be generalized.
+
+## Underfitting (high bias)
+This happens when the model's curve is no way near the training set.
+
+## Generalization [recommended]
+The model with parameters which is just right, so that the prediction on new examples out of the training set is almost near to the expectations.
+
+## Overfitting (high variance)
+This happens when the model's curve exactly fits the training set but practically it may predict wrong.
+ * **Solution:**
+    1. Add more training data
+    2. Remove some of the features by making its parameter zero
+    3. Make parameter ($w_j$) value low but not $b$. This method is called **_Regularization_** (recommended).
+
+## Cost function with regularization
+
+$$
+J\left(w, \space b\right) = \frac{1}{2m}\sum_{i=1}^{m}(f_{\vec w,b}(\vec x^{(i)}) - y^{(i)})^2 + \frac {\lambda}{2m} \sum_{j=1}^{n} w_j^2
+$$
+
+Where
+* $\lambda$ is the *_Regularization parameter_*
+  * When its higher the curve remains almost constant with a straight line
+  * When its smaller the curve overfits
+  * Better to choose a value in between
+* $m$ is the number of training examples
+* n is the number of parameters
+
+## Gradient Descent with regularization
+The updated gradient descent evaluated below is same for both `Linear Regression` and `Logistic Regression` models. Just that the $f(x)$ will differ.
+
+$$
+w = w - \alpha \frac{\partial}{\partial w}J(w,b)
+$$
+
+$$
+b = b - \alpha \frac{\partial}{\partial b}J(w,b)
+$$
+
+But now as $J(w,b)$ has been modified, below would be the new expression
+
+$$
+w_j = w_j - \alpha \left[ \frac{1}{m}\sum_{i=1}^{m} \left[(f_{w,b}(x^{(i)}) - y^{(i)})x_j^{(i)}\right]+\frac{\lambda}{m}w_j\right]
+$$
+
+$$
+w_j = w_j - \alpha \frac{\lambda}{m}w_j - \alpha \frac{1}{m}\sum_{i=1}^{m} \left[(f_{w,b}(x^{(i)}) - y^{(i)})x_j^{(i)}\right]
+$$
+
+Therefore,
+
+$$
+w_j = w_j \left(1 -  \alpha \frac{\lambda}{m}\right) - \alpha \frac{1}{m}\sum_{i=1}^{m} \left[(f_{w,b}(x^{(i)}) - y^{(i)})x_j^{(i)}\right]
+$$
+
+
+$$
+b = b - \alpha \frac{1}{m}\sum_{i=1}^{m}(f_{w,b}(x^{(i)}) - y^{(i)})
+\tag {remains same}
+$$
+
+# Neural Networks
+
+Neural Networks uses the same old models but are arranged in a manner that makes the prediction even better.
+
+The basic layers of a Neural network are
+  * **Input Layer** which contains features represented as a vector.
+  * **Hidden Layer** which contains more than one model (called as a neuron) that takes all the features as input and return a value called `activations` which are then fed to the next layer. (The next layer can be an another hidden layer or a final output layer, it depends on the architecture). Choosing the count of models (neurons) to be in the hidden layer is the architectural decision.
+  * **Output Layer** which takes `activations` vector as an input and outputs a final prediction.
