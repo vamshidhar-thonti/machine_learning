@@ -445,26 +445,31 @@ On the output layerm instead of using sigmoid, use linear activation function\
 and while compiling, instead of using loss function alone, pass named parameter `from_logits=True`, where logit means to evaluate the loss function with the equation rather than the output of the equation. Thus the model is more numerically accurate.
 
 ## Multi-label classification
+
 It may seem similar to that of the multi class classification but its not. Here, we tend to label multiple expectations from a single input rather a single expectation.
 
 For example: detecting car, bus, pedestrian from a single image is considered to a be multi-label classification.\
 Where while with handwritten digit classification we get on image with a number and we classify only one value as an output.
 
 ## Adam Optimization algorithm:
+
 While gradient descent helps in finding the parameters with low cost/loss, the operations performed to get there is tiny many steps. To make the learning process faster `Adaptive moment estimation` algorithm can be used. Ir can adjust the learning rate accordingly.\
 If the steps are too small and yet reached the minimum, then the learning rate will be increased by the algorithm automatically and vice versa.\
 One point to note is, the learning rate alpha is not global rather unique to each of the parameter including the parameter $b$.\
 So, if there are parameters from $w_1$ to $w_n$ and $b$, then there would be learning rates from $\alpha _1$ to $\alpha _n$ and $\alpha _b$ respectively. Any default learning rate can be assigned initially while using the algorithm.
 
 ## Convolutional Neural Network
+
 In a dense layer that we have been using till now actually it means that the layer's unit/neuron takes inputs/activation (if its a layer) as everything but with convolutional neural network or layer, the input of the unit/neuron would be only a part of it unlike with the dense layer. This way the output would be faster compared to the dense layer.
 
 Data should be split into 3 parts
-  * Training set - 60%
-  * Cross validation set - 20%
-  * Test set - 20%
+
+- Training set - 60%
+- Cross validation set - 20%
+- Test set - 20%
 
 ## Bias and Variance
+
 High Bias occurs when the model is underfit.
 High Variance occurs when the model is overfit.
 
@@ -553,7 +558,7 @@ Instead using just a single decision tree, we can group more than one decision t
 
 ## Random forest algorithm
 
-At each node, when choosing a feature to use to split, if $n$ features are available, pick a random subset of $k<n$ features and allow the algorithm to only choose from that subset of features.
+At each node, when choosing a feature to use to split, if $n$ features are available, pick a random subset of $k \lt n$ features and allow the algorithm to only choose from that subset of features.
 
 $$k=\sqrt n$$
 
