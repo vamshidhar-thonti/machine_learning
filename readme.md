@@ -291,17 +291,21 @@ $$
 As seen till now, we create a model that suits the training data well but when the features are less in number then the model will not be trained well enough which causes underfit, and when the features are many in number, the model may seem to perfectly fit the training data but the model cannot be generalized as the descision boundary is very complex. The parameters have to be chosen just right so that the decision boundary can be generalized.
 
 ## Underfitting (high bias)
+
 This happens when the model's curve is no way near the training set.
 
 ## Generalization [recommended]
+
 The model with parameters which is just right, so that the prediction on new examples out of the training set is almost near to the expectations.
 
 ## Overfitting (high variance)
+
 This happens when the model's curve exactly fits the training set but practically it may predict wrong.
- * **Solution:**
-    1. Add more training data
-    2. Remove some of the features by making its parameter zero
-    3. Make parameter ($w_j$) value low but not $b$. This method is called **_Regularization_** (recommended).
+
+- **Solution:**
+  1. Add more training data
+  2. Remove some of the features by making its parameter zero
+  3. Make parameter ($w_j$) value low but not $b$. This method is called **_Regularization_** (recommended).
 
 ## Cost function with regularization
 
@@ -310,14 +314,16 @@ J\left(w, \space b\right) = \frac{1}{2m}\sum_{i=1}^{m}(f_{\vec w,b}(\vec x^{(i)}
 $$
 
 Where
-* $\lambda$ is the *_Regularization parameter_*
-  * When its higher the curve remains almost constant with a straight line
-  * When its smaller the curve overfits
-  * Better to choose a value in between
-* $m$ is the number of training examples
-* n is the number of parameters
+
+- $\lambda$ is the _*Regularization parameter*_
+  - When its higher the curve remains almost constant with a straight line
+  - When its smaller the curve overfits
+  - Better to choose a value in between
+- $m$ is the number of training examples
+- n is the number of parameters
 
 ## Gradient Descent with regularization
+
 The updated gradient descent evaluated below is same for both `Linear Regression` and `Logistic Regression` models. Just that the $f(x)$ will differ.
 
 $$
@@ -344,7 +350,6 @@ $$
 w_j = w_j \left(1 -  \alpha \frac{\lambda}{m}\right) - \alpha \frac{1}{m}\sum_{i=1}^{m} \left[(f_{w,b}(x^{(i)}) - y^{(i)})x_j^{(i)}\right]
 $$
 
-
 $$
 b = b - \alpha \frac{1}{m}\sum_{i=1}^{m}(f_{w,b}(x^{(i)}) - y^{(i)})
 \tag {remains same}
@@ -355,14 +360,17 @@ $$
 Neural Networks uses the same old models but are arranged in a manner that makes the prediction even better.
 
 The basic layers of a Neural network are
-  * **Input Layer** which contains features represented as a vector.
-  * **Hidden Layer** which contains more than one model (called as a neuron) that takes all the features as input and return a value called `activations` which are then fed to the next layer. (The next layer can be an another hidden layer or a final output layer, it depends on the architecture). Choosing the count of models (neurons) to be in the hidden layer is the architectural decision.
-  * **Output Layer** which takes `activations` vector as an input and outputs a final prediction.
+
+- **Input Layer** which contains features represented as a vector.
+- **Hidden Layer** which contains more than one model (called as a neuron) that takes all the features as input and return a value called `activations` which are then fed to the next layer. (The next layer can be an another hidden layer or a final output layer, it depends on the architecture). Choosing the count of models (neurons) to be in the hidden layer is the architectural decision.
+- **Output Layer** which takes `activations` vector as an input and outputs a final prediction.
 
 ## Advice for applying Machine Learning
+
 > _Pending copy_
 
 ## Descision Trees
+
 Decision trees is another algorithm where the inputs are filtered based on the features. It resembles similar to that of a tree structure in DSA. Where top node is called `root node`, all the intermmediate nodes are called `decision nodes` and the last nodes in the tree are called `leaf nodes`.
 \
 At the decision nodes, the decision of spliting of the inputs are made based on feature that has been used.
@@ -372,3 +380,94 @@ At the decision nodes, the decision of spliting of the inputs are made based on 
 For example, with a dataset of 20 images consisting of 10 cats and 10 dogs, with features like ears being `pointy` or `floppy`, whiskers being `present` or `absent`, face being `round` or `not round`. With these features being in the decision node the images would split and move down the tree until all the images are classified as either `cat` or `not a cat`.
 \
 The purity of the algorithm is measured based on the final classfication. If the majority of the inputs are correctly classified as cats by the algorithm, it is said to be having a higher purity and vice versa.
+
+## Decision tree training
+
+### Entrophy as a measure of purity
+
+Entrophy's graph is of bell curve, at extremes of $p$ the Entrophy is less and at the center values of $p$ the Entrophy is high.
+\
+
+> Lower the Entrophy, higher the purity and vice versa.
+
+$p1$ is the fraction of examples that are cats
+\
+For example, if 3/6 are cats then $p1$ is 0.5 and $H(p1)$ is 1
+
+When formulated, Entrophy is given as
+
+$$
+H(p1) = -p_1  log_2(p_1) - p_0  log_2(p_0)
+$$
+
+$$
+p_0 = 1 - p_1
+$$
+
+Hence,
+
+$$
+H(p_1) = -p_1log_2(p_1) - (1-p_0)log_2(1-p_0)
+$$
+
+Note: $$"0log(0)"=0$$
+
+### Choosing a split: Information Gain
+
+Given to classify cats from 10 images, which actually consists of 5 cats and 5 dogs with 5 pointy ear shape and 5 floppy ear shape.
+
+Information gain with the feature ear shape can be given as
+
+$$
+= H(p_1^{root}) - (w^{left}*H(p_1^{left}+w^{right}*H(p_1^{right})))
+$$
+
+Where,
+
+$p_1^{root}$ is number of images are actually cats = 5/10 = 0.5
+
+$p_1^{left}$ is number of images are actually cats with ear shape as pointy = 4/5
+
+$w^{left}$ is number of images are classified with ear shape as pointy = 5/10
+
+$p_1^{right}$ is number of images are actually cats with ear shape as floppy = 1/5
+
+$w^{left}$ is number of images are classified with ear shape as floppy = 5/10
+
+> Choose the feature which has high information gain to start splitting.
+
+### One hot encoding
+
+Till now, the example had feature like round-not_round, present-absent etc, what if the feature can be classified with more than 2 outputs like ear shape can be pointy, floppy and oval?
+/
+That is where the one hot encoding helps us
+
+> If a categorical feature can take on $k$ values, create k binary features (0 or 1 valued)
+
+If a feature has continuous value (say weight can any number which means continuous), then take each weight value as threshold and calculate the information gain, the threshold with high information gain can be chosen as the threshold for that decision node.
+
+## Tree ensemble
+
+Instead using just a single decision tree, we can group more than one decision tree which makes the algorithm more robust and efficient, this method is called as tree ensemble.
+
+## Random forest algorithm
+
+At each node, when choosing a feature to use to split, if $n$ features are available, pick a random subset of $k<n$ features and allow the algorithm to only choose from that subset of features.
+
+$$k=\sqrt n$$
+
+## Boosted trees:
+
+Given a training set of size $m$
+
+For b = 1 to B:
+
+- Use sampling with replacement to create a new training set of size m
+  - But instead of picking from all examples with equal $(1/m)$ probability, make it more likely to pick misclassified examples from previously trained tree.
+- Train a decision tree on a new dataset.
+
+In simple words, after iteration of evaluating a model, consider the misclassfied examples with high priority in the following iterations and repeat the same process.
+
+## XGBoost
+
+eXtreme Gradient Boost tree is implemented with the same logic as above but more robust and efficient than the general boosted trees which can regularize the data from overfitting.
