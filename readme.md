@@ -358,3 +358,17 @@ The basic layers of a Neural network are
   * **Input Layer** which contains features represented as a vector.
   * **Hidden Layer** which contains more than one model (called as a neuron) that takes all the features as input and return a value called `activations` which are then fed to the next layer. (The next layer can be an another hidden layer or a final output layer, it depends on the architecture). Choosing the count of models (neurons) to be in the hidden layer is the architectural decision.
   * **Output Layer** which takes `activations` vector as an input and outputs a final prediction.
+
+## Advice for applying Machine Learning
+> _Pending copy_
+
+## Descision Trees
+Decision trees is another algorithm where the inputs are filtered based on the features. It resembles similar to that of a tree structure in DSA. Where top node is called `root node`, all the intermmediate nodes are called `decision nodes` and the last nodes in the tree are called `leaf nodes`.
+\
+At the decision nodes, the decision of spliting of the inputs are made based on feature that has been used.
+\
+**Purity** of the decision tree is measured based on the resultant splits that are being made.
+\
+For example, with a dataset of 20 images consisting of 10 cats and 10 dogs, with features like ears being `pointy` or `floppy`, whiskers being `present` or `absent`, face being `round` or `not round`. With these features being in the decision node the images would split and move down the tree until all the images are classified as either `cat` or `not a cat`.
+\
+The purity of the algorithm is measured based on the final classfication. If the majority of the inputs are correctly classified as cats by the algorithm, it is said to be having a higher purity and vice versa.
