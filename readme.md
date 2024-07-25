@@ -367,7 +367,108 @@ The basic layers of a Neural network are
 
 ## Advice for applying Machine Learning
 
-> _Pending copy_
+The ML libraries have most of the functionality in built and there is no need to write the code from scratch.
+
+In neural network models with libraries, most of the implementation is done within, like cost, loss calculations and the gradient descent ti minimize the cost etc...
+
+Till now the activation function that we have learnt and most widely used are
+
+1. `Linear activation function (No activation function)` for linear regression.
+   $$g(z)=z$$
+2. `Sigmoid activation function` for Binary calssification.
+   $$g(z) = \frac {1}{1 + e^{(-z)}}$$
+3. `Recitified Linear activation function (relu)` for non negative number prediction (House prices).
+   $$g(z)=max(0, z)$$
+
+## Choosing Activation funcitons
+
+For the output layer, $g(z)$, the activation function can be chosen based on the output format
+
+If $y$ (output) is
+
+- $0 / 1$, then choose `Sigmoid`
+- $+ / -$, then choose `Linear`
+- $>=0$, then choose `ReLU`
+
+For hidden layers, its always recommended to use ReLU activation function due its fastness. Because all it does is choose the mac value between $0$ and $z$ that leads to a faster learning process compared to the linear activation function.
+
+### Why do we need activation functions?
+
+It seems that using a linear activation function across all layers leads to a resultant linear activation function which anyhow does not fit all kinds of training data. So, its always recommented not to use linear activaiton function.
+\
+It is recommended to use a ReLU activation function.
+
+## Multiclass classification
+
+Till now we only saw the binary classification (either 0 or 1) but what if we want classification of more than 2 classes/categories? That is when the Multiclass classification algorithms pitch in.
+\
+The commonly used multiclass classification algorithm is `softmax`.
+
+### Softmax classification
+
+It is a generalized function of the logistic regression.
+\
+The formula for the softmax function is
+
+$$
+a_1 (output\ of\ class\ 1) = \frac {e^{z_1}} {e^{z_1} + e^{z_2} + ... +e^{z_n}}
+$$
+
+$$
+a_2 (output\ of\ class\ 2) = \frac {e^{z_2}} {e^{z_1} + e^{z_2} + ... +e^{z_n}}
+$$
+
+$$.$$
+$$.$$
+$$.$$
+
+$$
+a_n (output\ of\ class\ n) = \frac {e^{z_n}} {e^{z_1} + e^{z_2} + ... +e^{z_n}}
+$$
+
+Where,
+
+$z=w \cdot x + b$
+\
+and $sum(a_1, a_2, ..., a_n)=1$
+
+Note that the output layer of the neural network contains $n$ neurons instead of 1. Where $n$ is the number of classes/categories.
+
+Numerical round occurs when the implementation does vary slightly and the corresponding output is almost equivalen but not truely equivalent.
+\
+For example, $\frac {2}{10000}$ and $\left(\left(1 + \frac {1}{10000}\right)-\left(1-\frac {1}{10000}\right)\right)$ may produce almost same result but with minor difference in the decimal points. That difference in decimals is called as `Numerical Round Off Error`, which might seem negligible but impacts lot in case of softmax activation function. Also, using accurate values can lead the model to be more stable.
+\
+This can be acheived by calculating the loss with the activation functions equations itself rather than evaluatingusing the output of the activation function.
+
+Even in the code implementation we can achieve this a s following (recommended implementation)\
+On the output layerm instead of using sigmoid, use linear activation function\
+and while compiling, instead of using loss function alone, pass named parameter `from_logits=True`, where logit means to evaluate the loss function with the equation rather than the output of the equation. Thus the model is more numerically accurate.
+
+## Multi-label classification
+It may seem similar to that of the multi class classification but its not. Here, we tend to label multiple expectations from a single input rather a single expectation.
+
+For example: detecting car, bus, pedestrian from a single image is considered to a be multi-label classification.\
+Where while with handwritten digit classification we get on image with a number and we classify only one value as an output.
+
+## Adam Optimization algorithm:
+While gradient descent helps in finding the parameters with low cost/loss, the operations performed to get there is tiny many steps. To make the learning process faster `Adaptive moment estimation` algorithm can be used. Ir can adjust the learning rate accordingly.\
+If the steps are too small and yet reached the minimum, then the learning rate will be increased by the algorithm automatically and vice versa.\
+One point to note is, the learning rate alpha is not global rather unique to each of the parameter including the parameter $b$.\
+So, if there are parameters from $w_1$ to $w_n$ and $b$, then there would be learning rates from $\alpha _1$ to $\alpha _n$ and $\alpha _b$ respectively. Any default learning rate can be assigned initially while using the algorithm.
+
+## Convolutional Neural Network
+In a dense layer that we have been using till now actually it means that the layer's unit/neuron takes inputs/activation (if its a layer) as everything but with convolutional neural network or layer, the input of the unit/neuron would be only a part of it unlike with the dense layer. This way the output would be faster compared to the dense layer.
+
+Data should be split into 3 parts
+  * Training set - 60%
+  * Cross validation set - 20%
+  * Test set - 20%
+
+## Bias and Variance
+High Bias occurs when the model is underfit.
+High Variance occurs when the model is overfit.
+
+Based on the evaluation of cost function of various split data, the respective cost function comparision helps us find out if the model is `high bias`, `high variance` or in some rare scenarios its possible to have both high bias and high variance
 
 ## Descision Trees
 
