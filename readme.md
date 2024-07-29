@@ -577,3 +577,25 @@ In simple words, after iteration of evaluating a model, consider the misclassfie
 ## XGBoost
 
 eXtreme Gradient Boost tree is implemented with the same logic as above but more robust and efficient than the general boosted trees which can regularize the data from overfitting.
+
+## Unsupervised Learning
+
+The main objective here is to solve a problem when the data is not labeled or in other words the data's output is not defined before hand. Typically used to cluster the data, convert the data from one form to another etc...
+
+### K-means
+
+- Helpful in solving the problem where clustering is needed.
+- All it does is 2 steps:
+
+  - Given a dataset of 30 examples scattered over the graph into 2 sections/groups. The 2 k-means cluster centroids are randomly placed on the graph at distant places.
+
+    1. The first step of the algorithm is, the nearest examples to the respective centroids are classified and are formed into group.
+    2. The second step is, based on the classified group, the mean of the group is calculated and that centroid is moved to the position corresponding to the mean value.
+
+    - The process repeats from step 1 again until there is no further change in the mean value.
+
+- The cost function can either decrease or increase for every iteration but only choose the lowest one.
+- The elbow method can be used to choose the number of clusters but its not an optimal method to follow.
+- The random initialization of centroids has to be repetitive till we find the centroid locations that has the minimum cost function.
+
+Refer the coursera videos for detailed formulae
