@@ -599,3 +599,12 @@ The main objective here is to solve a problem when the data is not labeled or in
 - The random initialization of centroids has to be repetitive till we find the centroid locations that has the minimum cost function.
 
 Refer the coursera videos for detailed formulae
+
+### Anomaly Detection:
+
+- Helpful is finding the anomalies in a system given data.
+- Can detect the anomalies that haven't occured previously.
+- Uses Gaussian (Normal) Distribution to train the model and detect the anomalies.
+- Lower the probability likely the anomaly.
+
+Refer the coursera videos for detailed formulae
