@@ -633,3 +633,18 @@ $$\left\Vert \mathbf{v_m^{(k)}} - \mathbf{v_m^{(i)}}  \right\Vert^2 = \sum_{l=1}
 - In the algorithm, with the available data, we choose new axis(s) such a way that the distance from the new axis is reduced and the chosen axis should be able to plot the data divergely but not squished. This way the information can be retained with fewer features that can be easily plotted.
 - To reconstruct the original value (appromates) just multiply the new feature value with the vector of distances from the origin of new axis.
 - > Refer the coursera videos for detailed information.
+
+### Reinforcement Learning
+
+ - Given a state the subject is in, the algorithm gives an action for the subject to do.
+ - If the action gives a positive result, a positive reward is given (means the algorithm can repeat in the future) and when a negative result is obtained, a negative reward is given (means the algorithm doesn't repeat in the future)
+ - Similar to teaching a child, if the kid behave well, we say good, when behaved bad, we say bad. Which actual guides the kid what to do and not to do.
+
+ - `Policy`: is a function $\pi (s)=a$ mapping from states to actions, that tells you what action $a$ to take in a given state $s$.
+   - `State` is where the subject is in right now.
+   - `Action` is what it is going to perform in the next step.
+
+- `Discount factor` ($\gamma$) is a value set between $0$ to $1$ (exclusive), which results reduction in the reward while it reaching a state so that the algorithm can learn what to do and what not to do.
+
+- `return` is computed with a formula as $$R_1+\gamma R_2+\gamma^2 R_3+\gamma^3 R_4+...$$
+   - The current state the algorithm is in is fully rewarded without any discount (at $R_1$ from the above expression).
