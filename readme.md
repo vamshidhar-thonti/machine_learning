@@ -608,3 +608,28 @@ Refer the coursera videos for detailed formulae
 - Lower the probability likely the anomaly.
 
 Refer the coursera videos for detailed formulae
+
+### Collabarative Filtering
+
+> _Refer coursera videos_
+
+### Content based Filtering (Recommender Systems)
+
+- Given vectors of user information like age, gender, movies watched etc and movies that are being already rated with genre information, this algorithm helps in filtering the content and recommend a similar movie.
+- To acheive this the vectors of the user information and the vector of the movies and it's ratings should of equal length.
+- To acheive it, we pass the features through a neural network.
+  - Pass user information into a neural network with hidden layers of 258, 128, with 32 outputs
+  - Pass movie ratings and genres into a neural network with hidden layers of 258, 128, with 32 outputs
+- Applying a dot product on both the vectors give a predicting rating.
+- With that we can have then find similar movie with distance formula, (which generates a value, smaller the value similar it is). This way recommendation can be made.
+  - A similarity measure is the squared distance between the two vectors $\mathbf{v_m^{(k)}}$ and $\mathbf{v_m^{(i)}}$ _(movie vectors)_:
+
+$$\left\Vert \mathbf{v_m^{(k)}} - \mathbf{v_m^{(i)}}  \right\Vert^2 = \sum_{l=1}^{n}(v_{m_l}^{(k)} - v_{m_l}^{(i)})^2\tag{1}$$
+
+### Principal Component Analysis (PCA)
+
+- To visualize a dataset with many features (say 100s), it is impossible to draw a graph and get some insights.
+- Using the PCA algorithm we can fortunately visualize it by reducing the features to some handful numbers.
+- In the algorithm, with the available data, we choose new axis(s) such a way that the distance from the new axis is reduced and the chosen axis should be able to plot the data divergely but not squished. This way the information can be retained with fewer features that can be easily plotted.
+- To reconstruct the original value (appromates) just multiply the new feature value with the vector of distances from the origin of new axis.
+- > Refer the coursera videos for detailed information.
