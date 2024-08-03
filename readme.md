@@ -638,13 +638,31 @@ $$\left\Vert \mathbf{v_m^{(k)}} - \mathbf{v_m^{(i)}}  \right\Vert^2 = \sum_{l=1}
 
  - Given a state the subject is in, the algorithm gives an action for the subject to do.
  - If the action gives a positive result, a positive reward is given (means the algorithm can repeat in the future) and when a negative result is obtained, a negative reward is given (means the algorithm doesn't repeat in the future)
- - Similar to teaching a child, if the kid behave well, we say good, when behaved bad, we say bad. Which actual guides the kid what to do and not to do.
+ - Similar to teaching a child, if the kid behave well, we say good, when behaved bad, we say bad. Which actually guides the kid what to do and not to do.
 
  - `Policy`: is a function $\pi (s)=a$ mapping from states to actions, that tells you what action $a$ to take in a given state $s$.
    - `State` is where the subject is in right now.
    - `Action` is what it is going to perform in the next step.
 
-- `Discount factor` ($\gamma$) is a value set between $0$ to $1$ (exclusive), which results reduction in the reward while it reaching a state so that the algorithm can learn what to do and what not to do.
+- `Discount factor` ($\gamma$) is a value, set between $0$ to $1$ (exclusive), which results reduction in the reward while it reaching a state so that the algorithm can learn what to do and what not to do.
 
 - `return` is computed with a formula as $$R_1+\gamma R_2+\gamma^2 R_3+\gamma^3 R_4+...$$
    - The current state the algorithm is in is fully rewarded without any discount (at $R_1$ from the above expression).
+
+  ### State action value function $Q$ (optimal $Q$ function):
+   - It is given as $Q(s, a) = return$ if you
+     - start in state $s$.
+     - take action $a$ once.
+     - then optimally behave after that.
+   - It turns out that calculating the $Q(s,a)$ given state ($s$) and action ($a$), the max value of all the possible return values gives the optimal solution.
+
+  ### Bellman Equation
+   $R_1+\gamma R_2+\gamma^2 R_3+\gamma^3 R_4+...$ can also be written as\
+   $R_1+\gamma \left[R_2+\gamma R_3+\gamma^2 R_4+...\right]$\
+   Hence,
+   ### $$Q(s,a) = R(s) + \gamma \ max_{a\rq} \ Q({s\rq}, {a\rq})$$
+   - Where
+     - ${s}$ is current state
+     - ${a}$ is the current action in state ${s}$
+     - ${s\rq}$ is next state
+     - ${a\rq}$ is the next action in state ${s\rq}$
