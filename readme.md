@@ -666,3 +666,14 @@ $$\left\Vert \mathbf{v_m^{(k)}} - \mathbf{v_m^{(i)}}  \right\Vert^2 = \sum_{l=1}
      - ${a}$ is the current action in state ${s}$
      - ${s\rq}$ is next state
      - ${a\rq}$ is the next action in state ${s\rq}$
+
+  While Reinforcement Learning, we might not have all the training data initially at hand.
+  
+  To properly choose actions while still learning, there are 2 possible options available:
+  * Option 1: Pick the option $a$ that maximize $Q(s, a)$
+  * Option 2: 
+    * With Probability 0.95, pick the action $a$ that maximizes $Q(s, a)$. This is called as **Greedy**, **"Exploitation"**
+    * With Probability 0.05, pick an action $a$ randomly. **"Exploration"**
+
+    * This is called as **$\epsilon$ - Greedy policy**
+    * It is suggested to start with high $\epsilon$ and then gradually decrease to the lowest.
