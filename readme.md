@@ -677,3 +677,15 @@ $$\left\Vert \mathbf{v_m^{(k)}} - \mathbf{v_m^{(i)}}  \right\Vert^2 = \sum_{l=1}
 
     * This is called as **$\epsilon$ - Greedy policy**
     * It is suggested to start with high $\epsilon$ and then gradually decrease to the lowest.
+
+  With many rows of data set (say 100 M), it is quite expensive to calculate all the parameters for all the rows, to make it easier "mini-batch" algorithm can be used.
+    * Instead of choosing the whole dataset, we choose the subset of the data (say 1000) and calculate the parameters.
+    * Then the process is repeated with those mini batches of data.
+    * Final the gradient descent converges to the global minimum. (But the gradient descent curve will not be as smooth as the regular algorithm)
+    * This way the computation can be minimised and yet achieve the result.
+
+  While in the Reinforcemnet Learning, the same as above can be done, but the $Q_{new}$ value with the subset training data set could be noisy and can mis guide the output in the further steps while assigning $Q = Q_{new}$.
+    * To avoid that, instead of updating 100% of the parameters with the new parameters, we update 99% of the old parameter and 1% of new parameter.
+    $$w = 0.01 * w_{new} + 0.99 * w$$
+    $$b = 0.01 * b_{new} + 0.99 * b$$
+    * This process is called **Soft Update**.
